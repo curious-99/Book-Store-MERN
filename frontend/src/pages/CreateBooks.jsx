@@ -12,6 +12,7 @@ const CreateBooks = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // const { enqueueSnackbar } = useSnackbar();
+  const url = process.env.REACT_APP_URL;
 
   const handleSaveBook = () => {
     const data = {
@@ -21,7 +22,7 @@ const CreateBooks = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/books', data)
+      .post(url , data)
       .then(() => {
         setLoading(false);
         // enqueueSnackbar('Book Created successfully', { variant: 'success' });

@@ -12,11 +12,12 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType,setShowType] = useState('table');
-
+  const url = process.env.REACT_APP_URL;
+  
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/books')
+      .get(url)
       .then((response) => {
         console.log(response);
         setBooks(response.data.data);

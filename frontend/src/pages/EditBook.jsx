@@ -13,10 +13,11 @@ const EditBook = () => {
   const navigate = useNavigate();
   const {id} = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const url = process.env.REACT_APP_URL;
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`${url}/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear)
