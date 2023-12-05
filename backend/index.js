@@ -1,9 +1,13 @@
 import express  from "express";
-import { PORT,mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import { Book } from "./models/bookModels.js";
 import booksRoute from "./routes/booksRoutes.js";
 import cors from 'cors';
+
+
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express();
 
@@ -22,6 +26,9 @@ app.use(cors());
 //   })
 // );
 
+
+
+
 app.get("/",(req,res)=>{
     console.log(req)
     return res.status(234).send('<h2>Welcome</h2>')
@@ -29,15 +36,36 @@ app.get("/",(req,res)=>{
 
 app.use('/books', booksRoute);
 
+import path from "path"
+
+
 mongoose
-.connect(mongoDBURL)
+.connect(process.env.mongoDBURL)
 .then(()=>{
-    console.log('App connected to DataBase');
-    app.listen(PORT, ()=>{
-        console.log(`App is listening on port: ${PORT} : http://localhost:5555`);
-    })
-    
+    // console.log('App connected to DataBase');
+    // app.listen(process.env.PORT, ()=>{
+    //     console.log(`App is listening on port: ${process.env.PORT} : http://localhost:5555`);
+    // })
+
+    // deployment config
+    const port=process.env.PORT || 5555
+
+    let __dirname = path.resolve();
+
+    if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/client/build")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    });
+    }
+
+    app.listen(port, ()=>{
+        console.log(`Server Running in ${process.env.NODE_MODE} Mode on port ${port}`);
+    });
+        
 })
 .catch((err)=>{
     console.log(err);
 })
+
+

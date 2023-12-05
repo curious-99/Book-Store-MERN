@@ -3,26 +3,42 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import process from 'process';
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const {id} = useParams();
-  const url = process.env.REACT_APP_URL;
+  const url =  process.env.REACT_APP_URL;
 
-  useEffect(()=>{
-    setLoading(true)
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axios
+  //     .get(`http://localhost:5555/books/${id}`)
+  //     .then((response) => {
+  //       setBook(response.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    setLoading(true);
     axios
-      .get(`${url}/${id}`)
+      .get(`${process.env.REACT_APP_URL}/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
       })
-      .catch((err)=>{
-        console.log(err);
+      .catch((err) => {
+        console.error("Error fetching data:", err);
         setLoading(false);
-      })
-  },[])
+      });
+  }, []);
+  
 
   return (
     <div className='p-4'>

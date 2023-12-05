@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
-// import { AiOutlineEdit } from 'react-icons/ai';
-// import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import BooksTable from '../components/home/BooksTable';
 import BooksCard from '../components/home/BooksCard';
+import process from 'process';
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType,setShowType] = useState('table');
-  const url = process.env.REACT_APP_URL;
-  
+  const url =  process.env.REACT_APP_URL;
+  console.log(url);
+
   useEffect(() => {
     setLoading(true);
     axios
-      .get(url)
+      .get('http://localhost:5555/books')  // Replace with the actual URL
       .then((response) => {
-        console.log(response);
         setBooks(response.data.data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
         setLoading(false);
       });
   }, []);
+  
 
   return (
     <div className='p-4'>
