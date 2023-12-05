@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install && cd ../frontend && npm run dev && npm run build",
-    "start": "node index.js",
+    "start": "nodemon index.js && cd ../frontend && npm run dev",
     "dev": "nodemon index.js"
   },
   "author": "",

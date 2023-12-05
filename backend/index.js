@@ -38,9 +38,11 @@ app.use('/books', booksRoute);
 
 import path from "path"
 
+console.log('MongoDB Connection String:', process.env.mongoDBURL);
 
-mongoose
-.connect(process.env.mongoDBURL)
+
+mongoose.
+connect(process.env.mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>{
     // console.log('App connected to DataBase');
     // app.listen(process.env.PORT, ()=>{

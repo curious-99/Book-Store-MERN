@@ -1,12 +1,14 @@
 
+.env
+/backend/.env
+/.env
 /frontend/node_modules
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
-.env
-backend/.env
-/.env
+
+
 
 # testing
 /coverage
