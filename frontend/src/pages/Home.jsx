@@ -10,14 +10,14 @@ import process from 'process';
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType,setShowType] = useState('card');
+  const [showType,setShowType] = useState('table');
   const url =  process.env.REACT_APP_URL;
   console.log(url);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/books')  // Replace with the actual URL
+      .get('https://book-store-6dsr.onrender.com/books')  // Replace with the actual URL
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
@@ -53,11 +53,10 @@ const Home = () => {
     </div>
       {loading ? (
         <Spinner />
-      ) : showType === 'card' ? (
-        <BooksCard books={books} />
-        
-      ) : (
+      ) : showType === 'table' ? (
         <BooksTable books={books} />
+      ) : (
+        <BooksCard books={books} />
       )}
     </div>
   )
