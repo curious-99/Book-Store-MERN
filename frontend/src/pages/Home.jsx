@@ -10,7 +10,7 @@ import process from 'process';
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType,setShowType] = useState('table');
+  const [showType,setShowType] = useState('card');
   const url =  process.env.REACT_APP_URL;
   console.log(url);
 
@@ -53,10 +53,11 @@ const Home = () => {
     </div>
       {loading ? (
         <Spinner />
-      ) : showType === 'table' ? (
-        <BooksTable books={books} />
-      ) : (
+      ) : showType === 'card' ? (
         <BooksCard books={books} />
+        
+      ) : (
+        <BooksTable books={books} />
       )}
     </div>
   )
