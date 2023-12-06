@@ -5,14 +5,11 @@ import { Link } from 'react-router-dom';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import BooksTable from '../components/home/BooksTable';
 import BooksCard from '../components/home/BooksCard';
-import process from 'process';
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType,setShowType] = useState('table');
-  const url =  process.env.REACT_APP_URL;
-  console.log(url);
 
   useEffect(() => {
     setLoading(true);
