@@ -30,7 +30,7 @@ const BookModal = ({ book, onClose }) => {
         </div>
         <p className='mt-4'>Anything You want to show</p>
         <p className='my-2'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quia
+          Description of that book - Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quia
           voluptatum sint. Nisi impedit libero eveniet cum vitae qui expedita
           necessitatibus assumenda laboriosam, facilis iste cumque a pariatur
           nesciunt cupiditate voluptas? Quis atque earum voluptate dolor nisi
